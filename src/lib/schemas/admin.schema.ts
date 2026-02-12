@@ -1,0 +1,28 @@
+import { z } from 'zod'
+
+export const AdminCreateSchema = z.object({
+  name: z.string().min(1, 'Name is required').max(150, 'Max Character 150'),
+  username: z.string().min(1, 'Username is required').max(70, 'Max Character 70'),
+  email: z.email().max(100, 'Max Character 100').optional(),
+  role: z.string().optional(),
+  password: z.string().min(6, 'Password must be at least 6 characters')
+})
+
+export const AdminUpdateSchema = z.object({
+  name: z.string().min(1, 'Name is required').max(150, 'Max Character 150').optional(),
+  username: z.string().min(1, 'Username is required').max(70, 'Max Character 70').optional(),
+  email: z.email().max(100, 'Max Character 100').optional(),
+  role: z.string().optional(),
+  password: z
+    .string()
+    .optional()
+    .refine((val) => {
+      if (!val || val.length === 0) return true
+      return val.length >= 6
+    }, {
+      message: 'Password must be at least 6 characters'
+  })
+})
+
+export type AdminCreateInput = z.infer<typeof AdminCreateSchema>
+export type AdminUpdateInput = z.infer<typeof AdminUpdateSchema>

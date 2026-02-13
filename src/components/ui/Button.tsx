@@ -21,7 +21,6 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   className = "",
   disabled = false,
-  type = "button"
 }) => {
   // Size Classes
   const sizeClasses = {
@@ -44,7 +43,6 @@ const Button: React.FC<ButtonProps> = ({
       } ${variantClasses[variant]} ${
         disabled ? "cursor-not-allowed opacity-50" : ""
       }`}
-      type={type}
       onClick={onClick}
       disabled={disabled}
     >

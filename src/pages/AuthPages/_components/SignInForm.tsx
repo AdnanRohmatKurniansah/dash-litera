@@ -8,7 +8,7 @@ import Input from "../../../components/ui/InputField";
 import { EyeCloseIcon, EyeIcon } from "../../../icons";
 import Button from "../../../components/ui/Button";
 import { toast } from "sonner";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { AxiosError } from "axios";
 
 export default function SignInForm() {
@@ -45,6 +45,16 @@ export default function SignInForm() {
     <div className="flex flex-col flex-1">
       <div className="flex flex-col justify-center flex-1 w-full max-w-md mx-auto">
         <div>
+          <div className="sm:hidden flex flex-col items-center">
+            <Link to="/" className="block mb-4">
+              <img
+                width={250}
+                height={48}
+                src="/images/logo/logo.png"
+                alt="Logo"
+              />
+            </Link>
+          </div>
           <div className="mb-5 sm:mb-8">
             <h1 className="mb-2 font-semibold text-gray-800 text-title-sm dark:text-white/90 sm:text-title-md">
               Sign In

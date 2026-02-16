@@ -4,7 +4,7 @@ import Pagination from '../../components/common/Pagination'
 import Input from '../../components/ui/InputField'
 import Button from '../../components/ui/Button'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../../components/common/Table'
-import { formatDate } from '../../lib/utils'
+import { formatDate, stripHtml } from '../../lib/utils'
 import { TableEmpty } from '../../components/common/Table'
 import { Article } from '../../types'
 import { useTableFilter } from '../../hooks/useTableFilter'
@@ -141,9 +141,7 @@ const ArticleTable = () => {
                 <TableCell>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
                     {article.content
-                    ? article.content.length > 30
-                        ? article.content.slice(0, 30) + "..."
-                        : article.content
+                    ? stripHtml(article.content).slice(0, 30) + "..."
                     : "-"}
                     </p>
                 </TableCell>

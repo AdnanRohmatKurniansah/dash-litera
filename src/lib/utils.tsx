@@ -65,3 +65,8 @@ export const formatCurrency = (amount: number) => {
 export const formatNumber = (num: number) => {
   return new Intl.NumberFormat('id-ID').format(num)
 }
+
+export const stripHtml = (html: string): string => {
+  const doc = new DOMParser().parseFromString(html, 'text/html')
+  return doc.body.textContent ?? ''
+}

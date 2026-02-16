@@ -1,9 +1,9 @@
 import Label from '../../../components/ui/Label'
 import Input from '../../../components/ui/InputField'
 import Button from '../../../components/ui/Button'
-import TextArea from '../../../components/ui/TextArea'
+import RichTextEditor from '../../../components/ui/RichTextEditor'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm, FieldError } from 'react-hook-form'
+import { useForm, FieldError, Controller } from 'react-hook-form'
 import { ArticleUpdateInput, ArticleUpdateSchema } from '../../../lib/schemas/article.schema'
 import { useNavigate, useParams } from 'react-router'
 import { toast } from 'sonner'
@@ -24,6 +24,7 @@ const UpdateForm = () => {
     handleSubmit,
     reset,
     watch,
+    control,
     formState: { errors },
   } = useForm<ArticleUpdateInput>({
     resolver: zodResolver(ArticleUpdateSchema),
@@ -124,11 +125,18 @@ const UpdateForm = () => {
 
       <div className="col-span-12">
         <Label htmlFor="content">Content</Label>
-        <TextArea
-          rows={10}
-          placeholder="Enter article's content"
-          {...register('content')}
-          error={!!errors.content}
+        <Controller
+          name="content"
+          control={control}
+          render={({ field }) => (
+            <RichTextEditor
+              value={field.value ?? ''}
+              onChange={field.onChange}
+              placeholder="Enter article's content..."
+              rows={12}
+              error={!!errors.content}
+            />
+          )}
         />
         {errors.content && (
           <p className="mt-1 text-sm text-red-600 dark:text-red-400">

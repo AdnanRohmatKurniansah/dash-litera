@@ -1,14 +1,14 @@
 import Label from '../../../components/ui/Label'
 import Input from '../../../components/ui/InputField'
 import Button from '../../../components/ui/Button'
+import RichTextEditor from '../../../components/ui/RichTextEditor'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { FieldError, useForm } from 'react-hook-form'
+import { FieldError, useForm, Controller } from 'react-hook-form'
 import { ArticleCreateInput, ArticleCreateSchema } from '../../../lib/schemas/article.schema'
 import { useNavigate } from 'react-router'
 import { useArticleCreate } from '../../../api/queries/article'
 import { toast } from 'sonner'
 import { AxiosError } from 'axios'
-import TextArea from '../../../components/ui/TextArea'
 import { useEffect, useState } from 'react'
 
 const CreateForm = () => {
@@ -16,7 +16,7 @@ const CreateForm = () => {
   const createArticle = useArticleCreate()
   const [preview, setPreview] = useState<string | null>(null)
 
-  const { register, handleSubmit, reset, watch, formState: { errors }} = useForm<ArticleCreateInput>({
+  const { register, handleSubmit, reset, watch, control, formState: { errors }} = useForm<ArticleCreateInput>({
     resolver: zodResolver(ArticleCreateSchema),
   })
 
@@ -81,7 +81,19 @@ const CreateForm = () => {
         </div>
         <div className='md:col-span-12'>
             <Label htmlFor="content">Content</Label>
-            <TextArea rows={10} placeholder="Enter article's content" {...register("content")} error={!!errors.content} />
+            <Controller
+              name="content"
+              control={control}
+              render={({ field }) => (
+                <RichTextEditor
+                  value={field.value ?? ''}
+                  onChange={field.onChange}
+                  placeholder="Enter article's content..."
+                  rows={12}
+                  error={!!errors.content}
+                />
+              )}
+            />
             {errors.content && (
                 <p className="mt-1 text-sm text-red-600 dark:text-red-400">
                     {errors.content.message}
@@ -90,7 +102,7 @@ const CreateForm = () => {
         </div>
         <div>
             {preview && (
-                <div className="col-span-2 flex justify-start">
+                <div className="col-span-2 flex justify-start mb-2">
                    <img src={preview} alt="Preview" width={150} height={150}  className="rounded object-cover"/>
                 </div>
             )}

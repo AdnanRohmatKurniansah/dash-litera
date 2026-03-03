@@ -186,21 +186,6 @@ VITE_API_BASE_URL=http://localhost:{PORT}/api/v1
 
 ---
 
-# Project Structure (Example)
-
-```
-src/
- ├── api/
- ├── components/
- ├── pages/
- ├── routes/
- ├── hooks/
- ├── types/
- └── utils/
-```
-
----
-
 # Notes
 
 - Seluruh endpoint menggunakan JSON sebagai request dan response format.

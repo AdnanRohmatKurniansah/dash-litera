@@ -8,15 +8,7 @@ import {
 import Badge from "../../../components/ui/Badge";
 import { useDashboardStats } from "../../../api/queries/stats";
 import { Link } from "react-router";
-
-const formatCurrency = (amount: number) => {
-  return new Intl.NumberFormat('id-ID', {
-    style: 'currency',
-    currency: 'IDR',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  }).format(amount);
-};
+import { formatRp } from "../../../lib/utils";
 
 const formatDate = (dateString: string) => {
   const date = new Date(dateString);
@@ -149,7 +141,7 @@ export default function RecentOrders() {
                   isHeader
                   className="py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
                 >
-                  Order ID
+                  Receipt Number
                 </TableCell>
                 <TableCell
                   isHeader
@@ -183,7 +175,7 @@ export default function RecentOrders() {
                 <TableRow key={order.id} className="hover:bg-gray-50 dark:hover:bg-white/[0.02]">
                   <TableCell className="py-3">
                     <p className="font-medium text-gray-800 text-theme-sm dark:text-white/90">
-                      {order.receipt_number || `#${order.id.substring(0, 8)}`}
+                      {order.receipt_number ? order.receipt_number : '-'}
                     </p>
                   </TableCell>
                   <TableCell className="py-3">
@@ -197,7 +189,7 @@ export default function RecentOrders() {
                     </div>
                   </TableCell>
                   <TableCell className="py-3 text-gray-500 text-theme-sm dark:text-gray-400">
-                    {formatCurrency(order.total)}
+                    {formatRp(order.total)}
                   </TableCell>
                   <TableCell className="py-3 text-gray-500 text-theme-sm dark:text-gray-400">
                     {formatDate(order.created_at)}

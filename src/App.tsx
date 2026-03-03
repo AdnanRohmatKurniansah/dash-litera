@@ -22,6 +22,9 @@ import BookCreate from "./pages/Book/Create/BookCreate";
 import BookUpdate from "./pages/Book/Update/BookUpdate";
 import BookImageCreate from "./pages/Book/Images/Create/BookImage";
 import BookImageUpdate from "./pages/Book/Images/Update/ImageUpdate";
+import OrderData from "./pages/Order/OrderPage";
+import OrderDetail from "./pages/Order/Detail/OrderDetail";
+import ReviewData from "./pages/Review/ReviewPage";
 
 export default function App() {
   return (
@@ -65,6 +68,16 @@ export default function App() {
               <Route path="create" element={<CategoryCreate />} />
               <Route path="edit/:id" element={<CategoryUpdate />} />
             </Route>
+          </Route>
+
+          <Route path="order" element={<Outlet />}>
+            <Route index element={<OrderData />} />
+            <Route path="detail/:id" element={<OrderDetail />} />
+          </Route>
+
+          <Route path="review" element={<Outlet />}>
+            <Route index element={<ReviewData />} />
+            {/* <Route path="detail/:id" element={<OrderDetail />} /> */}
           </Route>
         </Route>
 

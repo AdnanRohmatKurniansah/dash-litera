@@ -1,4 +1,3 @@
-
 export const formatDate = (
   date: string | Date,
   format: 'short' | 'medium' | 'long' | 'full' = 'short'
@@ -8,9 +7,7 @@ export const formatDate = (
   try {
     const dateObj = typeof date === 'string' ? new Date(date) : date
 
-    if (isNaN(dateObj.getTime())) {
-      return '-'
-    }
+    if (isNaN(dateObj.getTime())) return '-'
 
     switch (format) {
       case 'short':
@@ -42,6 +39,8 @@ export const formatDate = (
           day: '2-digit',
           month: 'long',
           year: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
         })
 
       default:
@@ -70,3 +69,5 @@ export const stripHtml = (html: string): string => {
   const doc = new DOMParser().parseFromString(html, 'text/html')
   return doc.body.textContent ?? ''
 }
+
+export const formatRp = (n: number) => `Rp${n.toLocaleString("id-ID")}`

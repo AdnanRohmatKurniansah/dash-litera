@@ -56,18 +56,17 @@ export const API_ENDPOINTS = {
     DELETE: (id: string) => `/book/images/delete/${id}`,
   },
 
-  // ORDERS: {
-  //   LIST: '/order',
-  //   DETAIL: (id: string) => `/order/detail/${id}`,
-  //   DELETE: (id: string) => `/order/delete/${id}`,
-  //   SHIPPING_COST: '/order/cost',
-  //   CHECKOUT: '/order/checkout',
-  //   COMPLETED_BOOKS: '/order/completed-books',
-  // },
+  ORDERS: {
+    LIST: '/order',
+    DETAIL: (id: string) => `/order/detail/${id}`,
+    PROCESS: (id: string) => `/order/process/${id}`,
+    DELETE: (id: string) => `/order/delete/${id}`,
+    COMPLETED_BOOKS: '/order/completed-books',
+  },
 
-  // REVIEWS: {
-  //   LIST_BY_BOOK: (bookId: string) => `/reviews/book/${bookId}`,
-  //   BOOK_RATING: (bookId: string) => `/reviews/book/${bookId}/rating`,
-  //   DELETE: (id: string) => `/reviews/delete/${id}`,
-  // },
+  REVIEWS: {
+    LIST: '/review/admin',
+    DETAIL: (id: string) => `/review/admin/detail/${id}`,
+    DELETE: (id: string) => `/review/admin/delete/${id}`,
+  },
 } as const

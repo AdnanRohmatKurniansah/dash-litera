@@ -1,197 +1,209 @@
-# TailAdmin React - Free React Tailwind Admin Dashboard Template
+# Litera Admin Dashboard
 
-TailAdmin is a free and open-source admin dashboard template built on **React and Tailwind CSS**, providing developers
-with everything they need to create a comprehensive, data-driven back-end,
-dashboard, or admin panel solution for upcoming web projects.
+Admin Dashboard untuk aplikasi Litera – Book Store Online.  
+Dashboard ini digunakan untuk mengelola seluruh data toko buku mulai dari buku, kategori, artikel, pesanan, review, hingga statistik penjualan.
 
-With TailAdmin, you get access to all the necessary dashboard UI components, elements, and pages required to build a
-feature-rich and complete dashboard or admin panel. Whether you're building dashboard or admin panel for a complex web
-application or a simple website, TailAdmin is the perfect solution to help you get up and running quickly.
+Dashboard terhubung dengan Litera REST API berbasis Node.js, Express, Prisma, dan MongoDB.
 
-![TailAdmin React.js Dashboard Preview](./banner.png)
+---
 
-## Overview
+## Tech Stack
 
-TailAdmin provides essential UI components and layouts for building feature-rich, data-driven admin dashboards and
-control panels. It's built on:
+### Frontend
+- React + TypeScript
+- Tailwind CSS
+- Axios
+- React Router
+- React Query (optional)
+- JWT Authentication
 
-- React 19
-- TypeScript
-- Tailwind CSS v4
+### Backend (API)
+- Node.js
+- Express.js
+- Prisma ORM
+- MongoDB
+- JWT
+- Bcrypt
+- Cloudinary
+- Zod Validation
 
-### Quick Links
+---
 
-- [✨ Visit Website](https://tailadmin.com)
-- [📄 Documentation](https://tailadmin.com/docs)
-- [⬇️ Download](https://tailadmin.com/download)
-- [🖌️ Figma Design File (Community Edition)](https://www.figma.com/community/file/1214477970819985778)
-- [⚡ Get PRO Version](https://tailadmin.com/pricing)
+## Base URL API
 
-### Demos
-
-- [Free Version](https://free-react-demo.tailadmin.com/)
-- [Pro Version](https://react-demo.tailadmin.com)
-
-### Other Versions
-
-- [HTML Version](https://github.com/TailAdmin/tailadmin-free-tailwind-dashboard-template)
-- [Next.js Version](https://github.com/TailAdmin/free-nextjs-admin-dashboard)
-- [Vue.js Version](https://github.com/TailAdmin/vue-tailwind-admin-dashboard)
-- [Angular Version](https://github.com/TailAdmin/free-angular-tailwind-dashboard)
-- [Laravel Version](https://github.com/TailAdmin/tailadmin-laravel)
-
-## Installation
-
-### Prerequisites
-
-To get started with TailAdmin, ensure you have the following prerequisites installed and set up:
-
-- Node.js 18.x or later (recommended to use Node.js 20.x or later)
-
-### Cloning the Repository
-
-Clone the repository using the following command:
-
-```bash
-git clone https://github.com/TailAdmin/free-react-tailwind-admin-dashboard.git
+```
+http://localhost:{PORT}/api/v1
 ```
 
-> Windows Users: place the repository near the root of your drive if you face issues while cloning.
+---
 
-1. Install dependencies:
+# Available Features & Endpoints
 
-   ```bash
-   npm install
-   # or
-   yarn install
-   ```
+---
 
-2. Start the development server:
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   ```
+# 1. Authentication (Admin)
 
-## Components
+Digunakan untuk login dan manajemen akun admin.
 
-TailAdmin is a pre-designed starting point for building a web-based dashboard using React.js and Tailwind CSS. The
-template includes:
+| Method | Endpoint | Description |
+|--------|----------|------------|
+| POST | `/admin/login` | Login admin |
+| POST | `/admin/logout` | Logout admin |
+| GET | `/admin/profile` | Mendapatkan data profile admin |
+| PUT | `/admin/update-profile` | Update profile admin |
+| PUT | `/admin/change-password` | Mengubah password admin |
 
-- Sophisticated and accessible sidebar
-- Data visualization components
-- Prebuilt profile management and 404 page
-- Tables and Charts(Line and Bar)
-- Authentication forms and input elements
-- Alerts, Dropdowns, Modals, Buttons and more
-- FAQ & Accordion, Testimonials, and Carousels
-- Can't forget Dark Mode 🕶️
+---
 
-All components are built with React and styled using Tailwind CSS for easy customization.
+# 2. Statistics Dashboard
 
-## Feature Comparison
+Menampilkan ringkasan data untuk dashboard utama.
 
-### Free Version
+| Method | Endpoint | Description |
+|--------|----------|------------|
+| GET | `/statistic/dashboard` | Data ringkasan dashboard |
+| GET | `/statistic/orders` | Statistik pesanan |
+| GET | `/statistic/top-products` | Produk terlaris |
+| GET | `/statistic/low-stock` | Buku dengan stok rendah |
 
-- 1 Unique Dashboard
-- 35+ dashboard components
-- 50+ UI elements
-- Basic Figma design files
-- Community support
+---
 
-### Pro Version
+# 3. Admin Management
 
-- 7 Unique Dashboards: Analytics, Ecommerce, Marketing, CRM, SaaS, Stocks, Logistics (more coming soon)
-- 500+ dashboard components and UI elements
-- Complete Figma design file
-- Email support
+CRUD untuk mengelola admin lain.
 
-To learn more about pro version features and pricing, visit our [pricing page](https://tailadmin.com/pricing).
+| Method | Endpoint | Description |
+|--------|----------|------------|
+| GET | `/admin` | List semua admin |
+| GET | `/admin/:id` | Detail admin |
+| POST | `/admin/create` | Membuat admin baru |
+| PUT | `/admin/update/:id` | Update data admin |
+| DELETE | `/admin/delete/:id` | Hapus admin |
 
-## Changelog
+---
 
-### Version 2.1.0 - [Dec 30, 2025]
+# 4. Book Management
 
-- Resolved Date Picker positioning and input issues in Charts.
+Mengelola data buku di sistem.
 
-### Version 2.0.2 - [March 25, 2025]
+| Method | Endpoint | Description |
+|--------|----------|------------|
+| GET | `/book` | List semua buku |
+| GET | `/book/:id` | Detail buku |
+| POST | `/book/create` | Tambah buku |
+| PUT | `/book/update/:id` | Update buku |
+| DELETE | `/book/delete/:id` | Hapus buku |
+| GET | `/book/filter` | Filter buku |
+| GET | `/book/discounted` | Buku dengan diskon |
 
-- Upgraded to React 19
-- Included overrides for packages to prevent peer dependency errors.
-- Migrated from react-flatpickr to flatpickr package for React 19 support
+---
 
-### Version 2.0.1 - [February 27, 2025]
+# 5. Book Images Management
 
-#### Update Overview
+Mengelola gambar buku.
 
-- Upgraded to Tailwind CSS v4 for better performance and efficiency.
-- Updated class usage to match the latest syntax and features.
-- Replaced deprecated class and optimized styles.
+| Method | Endpoint | Description |
+|--------|----------|------------|
+| GET | `/book/images/:bookId` | List gambar berdasarkan buku |
+| GET | `/book/images/detail/:id` | Detail gambar |
+| POST | `/book/images/:bookId` | Tambah gambar buku |
+| PUT | `/book/images/update/:id` | Update gambar |
+| DELETE | `/book/images/delete/:id` | Hapus gambar |
 
-#### Next Steps
+---
 
-- Run npm install or yarn install to update dependencies.
-- Check for any style changes or compatibility issues.
-- Refer to the Tailwind CSS v4 [Migration Guide](https://tailwindcss.com/docs/upgrade-guide) on this release. if needed.
-- This update keeps the project up to date with the latest Tailwind improvements. 🚀
+# 6. Category Management
 
-### Version 2.0.0 - [February 2025]
+Mengelola kategori buku.
 
-A major update with comprehensive redesign and modern React patterns implementation.
+| Method | Endpoint | Description |
+|--------|----------|------------|
+| GET | `/category` | List kategori |
+| GET | `/category/:id` | Detail kategori |
+| POST | `/category/create` | Tambah kategori |
+| PUT | `/category/update/:id` | Update kategori |
+| DELETE | `/category/delete/:id` | Hapus kategori |
 
-#### Major Improvements
+---
 
-- Complete UI redesign with modern React patterns
-- New features: collapsible sidebar, chat, and calendar
-- Improved performance and accessibility
-- Updated data visualization using ApexCharts
+# 7. Article Management
 
-#### Key Features
+Mengelola artikel atau blog.
 
-- Redesigned dashboards (Ecommerce, Analytics, Marketing, CRM)
-- Enhanced navigation with React Router integration
-- Advanced tables with sorting and filtering
-- Calendar with drag-and-drop support
-- New UI components and improved existing ones
+| Method | Endpoint | Description |
+|--------|----------|------------|
+| GET | `/article` | List artikel |
+| GET | `/article/:id` | Detail artikel |
+| POST | `/article/create` | Tambah artikel |
+| PUT | `/article/update/:id` | Update artikel |
+| DELETE | `/article/delete/:id` | Hapus artikel |
 
-#### Breaking Changes
+---
 
-- Updated sidebar component API
-- Migrated charts to ApexCharts
-- Revised authentication system
+# 8. Order Management
 
-[Read more](https://tailadmin.com/docs/update-logs/react) on this release.
+Mengelola pesanan pelanggan.
 
-### Version 1.3.7 - [June 20, 2024]
+| Method | Endpoint | Description |
+|--------|----------|------------|
+| GET | `/order` | List semua pesanan |
+| GET | `/order/detail/:id` | Detail pesanan |
+| PUT | `/order/process/:id` | Proses pesanan |
+| DELETE | `/order/delete/:id` | Hapus pesanan |
+| GET | `/order/completed-books` | Buku yang telah selesai dibeli |
 
-#### Enhancements
+---
 
-1. Remove Repetition of DefaultLayout in every Pages
-2. Add ClickOutside Component for reduce repeated functionality in Header Message, Notification and User Dropdowns.
+# 9. Review Management
 
-### Version 1.3.6 - [Jan 31, 2024]
+Mengelola review yang diberikan oleh user terhadap buku.
 
-#### Enhancements
+| Method | Endpoint | Description |
+|--------|----------|------------|
+| GET | `/review/admin` | List semua review |
+| GET | `/review/admin/detail/:id` | Detail review |
+| DELETE | `/review/admin/delete/:id` | Hapus review |
 
-1. Integrate flatpickr in [Date Picker/Form Elements]
-2. Change color after select an option [Select Element/Form Elements].
-3. Make it functional [Multiselect Dropdown/Form Elements].
-4. Make best value editable [Pricing Table One/Pricing Table].
-5. Rearrange Folder structure.
+---
 
-### Version 1.2.0 - [Apr 28, 2023]
+# Authentication
 
-- Add Typescript in TailAdmin React.
+Semua endpoint dashboard (kecuali login) memerlukan Authorization header:
 
-### Version 1.0.0 - Initial Release - [Mar 13, 2023]
+```
+Authorization: Bearer <access_token>
+```
 
-- Initial release of TailAdmin React.
+---
 
-## License
+# Environment Variables (Frontend)
 
-TailAdmin React.js Free Version is released under the MIT License.
+Contoh file `.env`:
 
-## Support
+```
+VITE_API_BASE_URL=http://localhost:{PORT}/api/v1
+```
 
-If you find this project helpful, please consider giving it a star on GitHub. Your support helps us continue developing
-and maintaining this template.
+---
+
+# Project Structure (Example)
+
+```
+src/
+ ├── api/
+ ├── components/
+ ├── pages/
+ ├── routes/
+ ├── hooks/
+ ├── types/
+ └── utils/
+```
+
+---
+
+# Notes
+
+- Seluruh endpoint menggunakan JSON sebagai request dan response format.
+- Semua operasi CRUD memerlukan role admin yang valid.
+- Pastikan token JWT disimpan dengan aman di sisi client.
+- Dashboard hanya dapat diakses oleh admin yang telah terautentikasi.

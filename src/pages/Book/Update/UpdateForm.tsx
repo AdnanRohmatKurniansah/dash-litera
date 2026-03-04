@@ -225,7 +225,7 @@ const UpdateForm = () => {
       </div>
       <div>
         <Label htmlFor="weight">Weight (g)</Label>
-        <Input id="weight" type="number" step="any" min={1} {...register('weight')} placeholder="Enter weight" />
+        <Input id="weight" type="number" step="0.01" min={0} {...register('weight')} placeholder="Enter weight" />
         {errors.weight && (
           <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.weight.message}</p>
         )}
